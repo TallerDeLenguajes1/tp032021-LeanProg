@@ -109,7 +109,8 @@ namespace EmpresaCadetes.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation("Hello, this is the index!");
-            return View(micadeteria.MisCadetes);
+            List<Cadete> miscadtes= mirepo.getAll();
+            return View(miscadtes);
         }
         public IActionResult EliminarCadete(int idCadete)
         {

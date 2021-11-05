@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d1QjPH5DDip9eKqfxLri3hDBRJzkxAMpKBIMOlkiSr/OxG30qK5MLxses/E/Lx/fSiQiUkqrkclJHV0kmdeXbg==",
+  "dgSpecHash": "9x13gfE/ghGb8YzTPB1ETlgVN+rKXSwQq6qMFkVyWvDXVlG/PGjaQYeTOfWMqbloystl/a+QLZO4fB01bc1w1A==",
   "success": true,
-  "projectFilePath": "D:\\ParcialTallerOrtega\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\EmpresaCadetes.csproj",
+  "projectFilePath": "C:\\Users\\Alumno\\Desktop\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\EmpresaCadetes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alumno\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Alumno\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.10\\microsoft.aspnetcore.mvc.razor.extensions.5.0.10.nupkg.sha512",

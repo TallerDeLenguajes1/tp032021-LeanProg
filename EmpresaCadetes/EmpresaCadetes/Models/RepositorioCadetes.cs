@@ -22,16 +22,16 @@ namespace EmpresaCadetes.Entidades
             using (SQLiteConnection conexion= new SQLiteConnection(connectionString))
             {
                 conexion.Open();
-                string SQLQuery =  "SELECT * FROM Cadetes WHERE Activo = 1;";
+                string SQLQuery =  "SELECT * FROM Cadetes";
                 SQLiteCommand command= new SQLiteCommand(SQLQuery,conexion);
 
                 SQLiteDataReader dataReader = command.ExecuteReader();
                 while(dataReader.Read()){
                                  Cadete cadete = new Cadete();
-                                cadete.Id = Convert.ToInt32(dataReader["cadteId"]);
+                                cadete.Id = Convert.ToInt32(dataReader["cadeteId"]);
                                  cadete.Nombre = Convert.ToString(dataReader["cadeteNombre"]);
-                                 cadete.Direcion = Convert.ToString(dataReader["cadateDireccion"]);
-
+                                 cadete.Direcion = Convert.ToString(dataReader["cadeteDireccion"]);
+                                 cadete.Telefono = Convert.ToString(dataReader["cadeteTelefono"]);
    
                     listCadete.Add(cadete);
                 }

@@ -2215,11 +2215,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ParcialTallerOrtega\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\EmpresaCadetes.csproj",
+      "projectUniqueName": "C:\\Users\\Alumno\\Desktop\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\EmpresaCadetes.csproj",
       "projectName": "EmpresaCadetes",
-      "projectPath": "D:\\ParcialTallerOrtega\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\EmpresaCadetes.csproj",
+      "projectPath": "C:\\Users\\Alumno\\Desktop\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\EmpresaCadetes.csproj",
       "packagesPath": "C:\\Users\\Alumno\\.nuget\\packages\\",
-      "outputPath": "D:\\ParcialTallerOrtega\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\obj\\",
+      "outputPath": "C:\\Users\\Alumno\\Desktop\\TP4\\tp032021-LeanProg\\EmpresaCadetes\\EmpresaCadetes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
