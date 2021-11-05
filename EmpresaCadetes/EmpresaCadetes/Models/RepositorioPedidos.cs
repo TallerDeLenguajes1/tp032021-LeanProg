@@ -33,8 +33,10 @@ namespace EmpresaCadetes.Models
                         pedido.Numero= Convert.ToInt32(dataReader["pedidoID"]);
                         listPedidos.Add(pedido);
                 }
-                
+                conexion.Close();
+
             }
+            return listPedidos;
 
         }
 

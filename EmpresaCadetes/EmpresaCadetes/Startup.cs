@@ -19,7 +19,6 @@ namespace EmpresaCadetes
        
        Cadeteria cadeteria = new Cadeteria(); 
         DBCadeteria DB = new DBCadeteria();
-        RepositorioCadetes repositoriocadetes;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,6 +32,7 @@ namespace EmpresaCadetes
         {
             //string connectionString=Configuration.GetConecction("Default");
             RepositorioCadetes repositorioCadetes=new RepositorioCadetes(Configuration.GetConnectionString("Default"));
+            RepositorioPedidos repositorioPedidos = new RepositorioPedidos(Configuration.GetConnectionString("Default"));
             cadeteria.MisCadetes = DB.ReadCadetes();
             cadeteria.MisPedidos = DB.ReadPedidos();
             cadeteria.MisPagos = DB.ReadPago();
@@ -40,6 +40,7 @@ namespace EmpresaCadetes
             services.AddSingleton(cadeteria);
             services.AddSingleton(DB);
             services.AddSingleton(repositorioCadetes);
+            services.AddSingleton(repositorioPedidos);
            
         }
 

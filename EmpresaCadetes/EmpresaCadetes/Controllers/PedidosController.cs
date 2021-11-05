@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmpresaCadetes.Entidades;
+using EmpresaCadetes.Models;
 using NLog.Web;
 
 namespace EmpresaCadetes.Controllers
@@ -14,12 +15,14 @@ namespace EmpresaCadetes.Controllers
         private readonly ILogger<PedidosController> _logger;
         private readonly DBCadeteria db;
         private readonly Cadeteria cadeteria;
+        private readonly RepositorioPedidos repoPedidos;
         int idpedidos=0;
-        public PedidosController(ILogger<PedidosController> logger,DBCadeteria Db,Cadeteria Cadeteria)
+        public PedidosController(ILogger<PedidosController> logger,DBCadeteria Db,Cadeteria Cadeteria,RepositorioPedidos repoPedidos)
         {
             _logger = logger;
               db = Db;
             cadeteria = Cadeteria;
+            this.repoPedidos = repoPedidos;
             _logger.LogDebug(1, "NLog injected into Pedidos Controller");
 
         }
