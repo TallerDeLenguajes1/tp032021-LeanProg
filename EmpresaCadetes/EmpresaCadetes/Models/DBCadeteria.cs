@@ -13,9 +13,9 @@ namespace EmpresaCadetes.Entidades
     {
         //private Cadeteria cadeteria;
         //public Cadeteria Cadeteria { get => cadeteria; set => cadeteria = value; }
-        string path = "c:\\temp\\Cadetes.json";
-        string path2 = "c:\\temp\\Pedidos.json";
-        string path3 = "c:\\temp\\PagosRealizados.json";
+        string path = "Cadetes.json";
+        string path2 = "Pedidos.json";
+        string path3 = "PagosRealizados.json";
 
 
         public DBCadeteria()
@@ -203,6 +203,7 @@ namespace EmpresaCadetes.Entidades
                 string error = ex.ToString();
             }
         }
+        //BORRAR CADETE
         public void DeleteCadetes(int id)
         {
             try

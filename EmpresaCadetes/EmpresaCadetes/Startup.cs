@@ -1,4 +1,5 @@
 using EmpresaCadetes.Entidades;
+using EmpresaCadetes.DataBase;
 using EmpresaCadetes.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,8 +32,8 @@ namespace EmpresaCadetes
         public void ConfigureServices(IServiceCollection services)
         {
             //string connectionString=Configuration.GetConecction("Default");
-            RepositorioCadetes repositorioCadetes=new RepositorioCadetes(Configuration.GetConnectionString("Default"));
-            RepositorioPedidos repositorioPedidos = new RepositorioPedidos(Configuration.GetConnectionString("Default"));
+            IRepositorioCadetesDB repositorioCadetes=new RepositorioCadetesSQLite(Configuration.GetConnectionString("Default"));
+           // IRepositorioCadetesDB repositorioPedidos = new RepositorioPedidosSQLite(Configuration.GetConnectionString("Default"));
             cadeteria.MisCadetes = DB.ReadCadetes();
             cadeteria.MisPedidos = DB.ReadPedidos();
             cadeteria.MisPagos = DB.ReadPago();
@@ -40,7 +41,7 @@ namespace EmpresaCadetes
             services.AddSingleton(cadeteria);
             services.AddSingleton(DB);
             services.AddSingleton(repositorioCadetes);
-            services.AddSingleton(repositorioPedidos);
+            //services.AddSingleton(repositorioPedidos);
            
         }
 

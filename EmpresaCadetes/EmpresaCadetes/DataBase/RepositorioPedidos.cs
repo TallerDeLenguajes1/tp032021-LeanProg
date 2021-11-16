@@ -5,14 +5,20 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using EmpresaCadetes.Entidades;
-namespace EmpresaCadetes.Entidades
+namespace EmpresaCadetes.DataBase
 {
-    public class RepositorioPedidos
+
+    public class RepositorioPedidosJson
+    {
+        string path2 = "Pedidos.json";
+
+    }
+    public class RepositorioPedidosSQLite
     {
         //Constructor + variables para la conexion
         private readonly string connectionString;
         private readonly SQLiteConnection conexion;
-        public RepositorioPedidos(string connectionString)
+        public RepositorioPedidosSQLite(string connectionString)
         {
             this.connectionString = connectionString;
             conexion= new SQLiteConnection(connectionString);

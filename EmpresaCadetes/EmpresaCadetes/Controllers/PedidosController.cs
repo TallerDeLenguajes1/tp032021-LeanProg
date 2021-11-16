@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EmpresaCadetes.Entidades;
 using EmpresaCadetes.Models;
 using NLog.Web;
+using EmpresaCadetes.DataBase;
 
 namespace EmpresaCadetes.Controllers
 {
@@ -15,9 +16,9 @@ namespace EmpresaCadetes.Controllers
         private readonly ILogger<PedidosController> _logger;
         private readonly DBCadeteria db;
         private readonly Cadeteria cadeteria;
-        private readonly RepositorioPedidos repoPedidos;
+        private readonly IRepositorioCadetesDB repoPedidos;
         int idpedidos=0;
-        public PedidosController(ILogger<PedidosController> logger,DBCadeteria Db,Cadeteria Cadeteria,RepositorioPedidos repoPedidos)
+        public PedidosController(ILogger<PedidosController> logger,DBCadeteria Db,Cadeteria Cadeteria,IRepositorioCadetesDB repoPedidos)
         {
             _logger = logger;
               db = Db;

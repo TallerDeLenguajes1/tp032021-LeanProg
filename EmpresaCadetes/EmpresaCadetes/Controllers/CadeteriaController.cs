@@ -1,4 +1,5 @@
-﻿using EmpresaCadetes.Entidades;
+﻿using EmpresaCadetes.DataBase;
+using EmpresaCadetes.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,11 +16,11 @@ namespace EmpresaCadetes.Controllers
        
         private readonly Cadeteria micadeteria;
         private readonly DBCadeteria db;
-        private readonly RepositorioCadetes mirepo;
+        private readonly IRepositorioCadetesDB mirepo;
         private int id = 0;
         private int idpago = 1;
 
-        public CadeteriaController(ILogger<CadeteriaController> logger,Cadeteria micadeteria,DBCadeteria db, RepositorioCadetes mirepo)
+        public CadeteriaController(ILogger<CadeteriaController> logger,Cadeteria micadeteria,DBCadeteria db,IRepositorioCadetesDB mirepo)
         {
             _logger = logger;
            
@@ -109,7 +110,7 @@ namespace EmpresaCadetes.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation("Hello, this is the index!");
-            List<Cadete> miscadtes= mirepo.getAll();
+            List<Cadete> miscadtes= mirepo.ReadCadetes();
             return View(miscadtes);
         }
         public IActionResult EliminarCadete(int idCadete)
