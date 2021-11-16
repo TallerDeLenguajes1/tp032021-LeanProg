@@ -11,11 +11,11 @@ namespace EmpresaCadetes.Entidades
 {
     public class DBCadeteria
     {
-        private Cadeteria cadeteria;
-        public Cadeteria Cadeteria { get => cadeteria; set => cadeteria = value; }
-        string path = "d:\\temp\\Cadetes.json";
-        string path2 = "d:\\temp\\Pedidos.json";
-        string path3 = "d:\\temp\\PagosRealizados.json";
+        //private Cadeteria cadeteria;
+        //public Cadeteria Cadeteria { get => cadeteria; set => cadeteria = value; }
+        string path = "c:\\temp\\Cadetes.json";
+        string path2 = "c:\\temp\\Pedidos.json";
+        string path3 = "c:\\temp\\PagosRealizados.json";
 
 
         public DBCadeteria()

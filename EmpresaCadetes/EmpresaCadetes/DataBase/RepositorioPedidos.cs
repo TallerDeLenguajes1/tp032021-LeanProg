@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using EmpresaCadetes.Entidades;
-namespace EmpresaCadetes.Models
+namespace EmpresaCadetes.Entidades
 {
     public class RepositorioPedidos
     {

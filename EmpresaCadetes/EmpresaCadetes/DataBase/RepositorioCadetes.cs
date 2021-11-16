@@ -15,7 +15,7 @@ namespace EmpresaCadetes.Entidades
         private readonly SQLiteConnection conexion;
         public RepositorioCadetes(string connectionString){
             this.connectionString = connectionString;
-            conexion= new SQLiteConnection(connectionString);
+            this.conexion= new SQLiteConnection(connectionString);
         }
         public List<Cadete> getAll(){
             List<Cadete> listCadete= new List<Cadete>();
