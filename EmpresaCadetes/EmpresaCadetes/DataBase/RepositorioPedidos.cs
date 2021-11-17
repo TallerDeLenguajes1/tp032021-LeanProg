@@ -10,8 +10,15 @@ using System.Text.Json;
 
 namespace EmpresaCadetes.DataBase
 {
+    public interface IRepositorioPedidosDB
+    {
+        void DeletePedidos(int id);
+        void ModificarEstadoPedido(List<Pedidos> miListap);
+        List<Pedidos> ReadPedidos();
+        void SavePedidos(Pedidos pedido1);
+    }
 
-    public class RepositorioPedidosJson
+    public class RepositorioPedidosJson : IRepositorioPedidosDB
     {
         string path2 = "Pedidos.json";
         public RepositorioPedidosJson()
@@ -140,7 +147,7 @@ namespace EmpresaCadetes.DataBase
 
 
 
-    public class RepositorioPedidosSQLite
+    public class RepositorioPedidosSQLite : IRepositorioPedidosDB
     {
         //Constructor + variables para la conexion
         private readonly string connectionString;
@@ -150,21 +157,24 @@ namespace EmpresaCadetes.DataBase
             this.connectionString = connectionString;
             conexion= new SQLiteConnection(connectionString);
         }
+
         //obetener los pedidos de la bd en una lista
-        public List<Pedidos> getAll(){
-            List<Pedidos> listPedidos= new List<Pedidos>();
-            using (SQLiteConnection conexion= new SQLiteConnection(connectionString))
+        public List<Pedidos> ReadPedidos()
+        {
+            List<Pedidos> listPedidos = new List<Pedidos>();
+            using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
             {
                 conexion.Open();
                 string SQLQuery = "SELECT * FROM PEDIDOS";
-                SQLiteCommand command= new SQLiteCommand(SQLQuery,conexion);
-                SQLiteDataReader dataReader= command.ExecuteReader();
-                while(dataReader.Read()){
-                        Pedidos pedido= new Pedidos();
-                        pedido.Estado= Convert.ToString(dataReader["pedidoEstado"]);
-                        pedido.Observacion= Convert.ToString(dataReader["pedidoObs"]);
-                        pedido.Numero= Convert.ToInt32(dataReader["pedidoID"]);
-                        listPedidos.Add(pedido);
+                SQLiteCommand command = new SQLiteCommand(SQLQuery, conexion);
+                SQLiteDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    Pedidos pedido = new Pedidos();
+                    pedido.Estado = Convert.ToString(dataReader["pedidoEstado"]);
+                    pedido.Observacion = Convert.ToString(dataReader["pedidoObs"]);
+                    pedido.Numero = Convert.ToInt32(dataReader["pedidoID"]);
+                    listPedidos.Add(pedido);
                 }
                 conexion.Close();
 
@@ -173,5 +183,23 @@ namespace EmpresaCadetes.DataBase
 
         }
 
+        public void DeletePedidos(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        public void ModificarEstadoPedido(List<Pedidos> miListap)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        public void SavePedidos(Pedidos pedido1)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

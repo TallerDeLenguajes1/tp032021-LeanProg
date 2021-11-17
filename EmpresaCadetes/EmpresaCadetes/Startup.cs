@@ -32,8 +32,8 @@ namespace EmpresaCadetes
         public void ConfigureServices(IServiceCollection services)
         {
             //string connectionString=Configuration.GetConecction("Default");
-            IRepositorioCadetesDB repositorioCadetes=new RepositorioCadetesSQLite(Configuration.GetConnectionString("Default"));
-           // IRepositorioCadetesDB repositorioPedidos = new RepositorioPedidosSQLite(Configuration.GetConnectionString("Default"));
+            IRepositorioCadetesDB repositorioCadetes=  new RepositorioCadetesSQLite(Configuration.GetConnectionString("Default"));
+            IRepositorioPedidosDB repositorioPedidos = new RepositorioPedidosSQLite(Configuration.GetConnectionString("Default"));
             cadeteria.MisCadetes = DB.ReadCadetes();
             cadeteria.MisPedidos = DB.ReadPedidos();
             cadeteria.MisPagos = DB.ReadPago();
@@ -41,7 +41,7 @@ namespace EmpresaCadetes
             services.AddSingleton(cadeteria);
             services.AddSingleton(DB);
             services.AddSingleton(repositorioCadetes);
-            //services.AddSingleton(repositorioPedidos);
+            services.AddSingleton(repositorioPedidos);
            
         }
 
