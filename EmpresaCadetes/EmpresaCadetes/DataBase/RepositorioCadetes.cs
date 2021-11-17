@@ -279,12 +279,36 @@ namespace EmpresaCadetes.DataBase
 
         public void SaveCadete(Cadete cadete)
         {
-            throw new NotImplementedException();
+            string sqlquery = "INSERT INTO Cadetes SET (cadeteNombre, cadeteDirecion,cadeteTelefo) VALUES (@nombre,@direccion,@telefono);";
+            using (SQLiteConnection conexion= new SQLiteConnection(connectionString))
+            {
+                using (SQLiteCommand command= new SQLiteCommand(sqlquery,conexion))
+                 {
+                    conexion.Open();
+                    command.Parameters.AddWithValue("@nombre",cadete.Nombre);
+                    command.Parameters.AddWithValue("@direccion", cadete.Direcion);
+                    command.Parameters.AddWithValue("@telefono",cadete.Telefono);
+                }
+            }
         }
 
         public void UpdateCadete(Cadete unCadete)
         {
-            throw new NotImplementedException();
+            string SQLQuery= "UPDATE Cadetes SET cadeteNombre=@nombre, cadeteDireccion=@direccion," +
+                "cadeteTelefono=@telefono WHERE cadeteID=@id_cad";
+            using(SQLiteConnection conexion= new SQLiteConnection(connectionString))
+            {
+                using(SQLiteCommand command= new SQLiteCommand(SQLQuery,conexion))
+                {
+                    conexion.Open();
+                    command.Parameters.AddWithValue("@id_cad", unCadete.Id);
+                    command.Parameters.AddWithValue("@nombre", unCadete.Nombre);
+                    command.Parameters.AddWithValue("@direccion", unCadete.Direcion);
+                    command.Parameters.AddWithValue("@telefono", unCadete.Telefono);
+                    command.ExecuteNonQuery();
+                    conexion.Close();
+                }
+            }
         }
     }
 }

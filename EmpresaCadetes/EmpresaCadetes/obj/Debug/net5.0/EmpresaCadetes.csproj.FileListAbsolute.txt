@@ -2650,3 +2650,6 @@ C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadete
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\ref\EmpresaCadetes.dll
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\EmpresaCadetes.pdb
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\EmpresaCadetes.genruntimeconfig.cache
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\Cadetes.json
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\PagosRealizados.json
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\Pedidos.json
