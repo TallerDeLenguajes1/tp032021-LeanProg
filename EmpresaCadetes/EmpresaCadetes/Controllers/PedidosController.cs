@@ -16,9 +16,9 @@ namespace EmpresaCadetes.Controllers
         private readonly ILogger<PedidosController> _logger;
         private readonly DBCadeteria db;
         private readonly Cadeteria cadeteria;
-        private readonly IRepositorioCadetesDB repoPedidos;
-        int idpedidos=0;
-        public PedidosController(ILogger<PedidosController> logger,DBCadeteria Db,Cadeteria Cadeteria,IRepositorioCadetesDB repoPedidos)
+        private readonly IRepositorioPedidosDB repoPedidos;
+        //int idpedidos=0;
+        public PedidosController(ILogger<PedidosController> logger,DBCadeteria Db,Cadeteria Cadeteria,IRepositorioPedidosDB repoPedidos)
         {
             _logger = logger;
               db = Db;
@@ -30,20 +30,21 @@ namespace EmpresaCadetes.Controllers
         public IActionResult AgregarPedidos(string obs,string nombrec,string direc,string telefonoc,string estado)
         {
             
-            if (cadeteria.MisPedidos.Count==0)
-            {
-                idpedidos = 1;
-            }
-            else
-            {
-                idpedidos = cadeteria.MisPedidos.Last().Numero + 1;
-            }
+            //if (cadeteria.MisPedidos.Count==0)
+            //{
+            //    idpedidos = 1;
+            //}
+            //else
+            //{
+            //    idpedidos = cadeteria.MisPedidos.Last().Numero + 1;
+            //}
 
             Pedidos newPedido;
-            newPedido = new Pedidos(idpedidos, obs, estado, nombrec, direc, telefonoc);
-            cadeteria.MisPedidos.Add(newPedido);
-            db.SavePedidos(newPedido);
-            idpedidos++;
+            newPedido = new Pedidos(obs, estado, nombrec, direc, telefonoc);
+            repoPedidos.SavePedidos(newPedido);
+            //cadeteria.MisPedidos.Add(newPedido);
+            //db.SavePedidos(newPedido);
+            //idpedidos++;
             return View(newPedido);
         }
         public IActionResult FormularioPedido()
@@ -54,8 +55,9 @@ namespace EmpresaCadetes.Controllers
 
         public IActionResult MostrarPedidos()
         {
-               //VISTA PARA MOSTRAR PEDIDOS
-            return View(cadeteria);
+            //VISTA PARA MOSTRAR PEDIDOS
+            List<Pedidos> pedidos = repoPedidos.ReadPedidos();
+            return View(pedidos);
         }
 
         //cambiar Estado de un pedido a entregado para pagar al cadete

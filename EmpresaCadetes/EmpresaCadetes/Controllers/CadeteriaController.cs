@@ -18,7 +18,7 @@ namespace EmpresaCadetes.Controllers
         private readonly DBCadeteria db;
         private readonly IRepositorioCadetesDB mirepo;
         private int id = 0;
-        private int idpago = 1;
+       // private int idpago = 1;
 
         public CadeteriaController(ILogger<CadeteriaController> logger,Cadeteria micadeteria,DBCadeteria db,IRepositorioCadetesDB mirepo)
         {
@@ -65,31 +65,31 @@ namespace EmpresaCadetes.Controllers
         public IActionResult PagarCadete(int idCadete)
         {
 
-            string fechaActual=DateTime.Now.ToString();
-            float suma = 0;
-            Cadete micadete = micadeteria.MisCadetes.Where(cade => cade.Id == idCadete).First();
-            if (ControlEntregado(micadete.Listapedidos))
-            {
-                foreach (var pedido in micadete.Listapedidos)
-                {
-                    if (pedido.Estado == "ENTREGADO")
-                    {
-                        suma = 100 + suma;
-                        micadeteria.MisPedidos.RemoveAll(x=>x.Numero==pedido.Numero); 
-                    }
-                }
-                Pago nuevoPago = new Pago(fechaActual, micadete.Nombre, suma,idpago);
-                db.SavePago(nuevoPago);
-                micadeteria.MisPagos.Add(nuevoPago);
-                //borroPedidodelcadete
-                micadete.Listapedidos.RemoveAll(x=>x.Estado=="ENTREGADO");
-                //actualizo bd
-                db.ModificarListaCadeteApedido(micadeteria.MisCadetes);
-                //actualizo bd
-                db.ModificarEstadoPedido(micadeteria.MisPedidos);
-                idpago++;
+            //string fechaActual=DateTime.Now.ToString();
+            //float suma = 0;
+            //Cadete micadete = micadeteria.MisCadetes.Where(cade => cade.Id == idCadete).First();
+            //if (ControlEntregado(micadete.Listapedidos))
+            //{
+            //    foreach (var pedido in micadete.Listapedidos)
+            //    {
+            //        if (pedido.Estado == "ENTREGADO")
+            //        {
+            //            suma = 100 + suma;
+            //            micadeteria.MisPedidos.RemoveAll(x=>x.Numero==pedido.Numero); 
+            //        }
+            //    }
+            //    Pago nuevoPago = new Pago(fechaActual, micadete.Nombre, suma,idpago);
+            //    db.SavePago(nuevoPago);
+            //    micadeteria.MisPagos.Add(nuevoPago);
+            //    //borroPedidodelcadete
+            //    micadete.Listapedidos.RemoveAll(x=>x.Estado=="ENTREGADO");
+            //    //actualizo bd
+            //    db.ModificarListaCadeteApedido(micadeteria.MisCadetes);
+            //    //actualizo bd
+            //    db.ModificarEstadoPedido(micadeteria.MisPedidos);
+            //   idpago++;
                 
-            }
+            //}
 
             return View(micadeteria);
 

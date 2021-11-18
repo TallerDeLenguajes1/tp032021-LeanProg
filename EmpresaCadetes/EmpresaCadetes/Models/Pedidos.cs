@@ -13,16 +13,16 @@ namespace EmpresaCadetes.Entidades
         private string estado;
      
 
-        public Pedidos(int numero, string observacion, string estado,string nombre,string direcion, string telefono)
+        public Pedidos(string observacion, string estado,string nombre,string direcion, string telefono)
         {
-            this.numero = numero;
+            
             this.observacion = observacion;
-            this.newCliente = new Cliente(numero,nombre,direcion,telefono);
+            this.newCliente = new Cliente(nombre,direcion,telefono);
             this.estado = estado;
         }
         public Pedidos()
         {
-
+           this.newCliente=new Cliente();
         }
         public int Numero { get => numero; set => numero = value; }
         public string Observacion { get => observacion; set => observacion = value; }

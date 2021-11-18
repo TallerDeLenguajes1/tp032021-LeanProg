@@ -11,11 +11,19 @@ using System.Text.Json;
 namespace EmpresaCadetes.DataBase
 {
 
+    public interface IRepositorioCadetesDB
+    {
+        void DeleteCadetes(int id);
+        Cadete GetCadeteById(int id);
+        List<Cadete> ReadCadetes();
+        void SaveCadete(Cadete cadete);
+        void UpdateCadete(Cadete unCadete);
+    }
     public class RepositorioCadetesJson : IRepositorioCadetesDB
     {
 
         string path = "Cadetes.json";
-        string path3 = "PagosRealizados.json";
+       //string path3 = "PagosRealizados.json";
 
         public RepositorioCadetesJson()
         {
@@ -233,7 +241,7 @@ namespace EmpresaCadetes.DataBase
             using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
             {
                 conexion.Open();
-                string Query = "DELETE FROM Cadetes WHERE cadeteID='" + Convert.ToString(id) + "'";
+                string Query = "DELETE FROM Cadetes WHERE cadeteID='" + Convert.ToString(id) + "';";
                 using (SQLiteCommand command = new SQLiteCommand(Query,conexion))
                 {
                     command.ExecuteNonQuery();
