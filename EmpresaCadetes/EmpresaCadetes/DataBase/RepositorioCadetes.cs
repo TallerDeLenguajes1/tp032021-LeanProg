@@ -287,7 +287,7 @@ namespace EmpresaCadetes.DataBase
 
         public void SaveCadete(Cadete cadete)
         {
-            string sqlquery = "INSERT INTO Cadetes SET (cadeteNombre, cadeteDirecion,cadeteTelefo) VALUES (@nombre,@direccion,@telefono);";
+            string sqlquery = "INSERT INTO Cadetes (cadeteNombre, cadeteDireccion,cadeteTelefono) VALUES (@nombre,@direccion,@telefono);";
             using (SQLiteConnection conexion= new SQLiteConnection(connectionString))
             {
                 using (SQLiteCommand command= new SQLiteCommand(sqlquery,conexion))
@@ -296,6 +296,8 @@ namespace EmpresaCadetes.DataBase
                     command.Parameters.AddWithValue("@nombre",cadete.Nombre);
                     command.Parameters.AddWithValue("@direccion", cadete.Direcion);
                     command.Parameters.AddWithValue("@telefono",cadete.Telefono);
+                    command.ExecuteNonQuery();
+                    conexion.Close();
                 }
             }
         }

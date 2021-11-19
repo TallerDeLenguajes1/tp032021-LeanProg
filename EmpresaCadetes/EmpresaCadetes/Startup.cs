@@ -31,18 +31,22 @@ namespace EmpresaCadetes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //string connectionString=Configuration.GetConecction("Default");
-            IRepositorioCadetesDB repositorioCadetes=  new RepositorioCadetesSQLite(Configuration.GetConnectionString("Default"));
-            IRepositorioPedidosDB repositorioPedidos = new RepositorioPedidosSQLite(Configuration.GetConnectionString("Default"));
-            cadeteria.MisCadetes = DB.ReadCadetes();
-            cadeteria.MisPedidos = DB.ReadPedidos();
-            cadeteria.MisPagos = DB.ReadPago();
+            IIDBSQLite DB = new IDBSQLite(Configuration.GetConnectionString("Default"));
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddSingleton(cadeteria);
             services.AddSingleton(DB);
-            services.AddSingleton(repositorioCadetes);
-            services.AddSingleton(repositorioPedidos);
-           
+            ////string connectionString=Configuration.GetConecction("Default");
+            //IRepositorioCadetesDB repositorioCadetes=  new RepositorioCadetesSQLite(Configuration.GetConnectionString("Default"));
+            //IRepositorioPedidosDB repositorioPedidos = new RepositorioPedidosSQLite(Configuration.GetConnectionString("Default"));
+            //cadeteria.MisCadetes = DB.ReadCadetes();
+            //cadeteria.MisPedidos = DB.ReadPedidos();
+            //cadeteria.MisPagos = DB.ReadPago();
+
+            //services.AddSingleton(cadeteria);
+            //services.AddSingleton(DB);
+            //services.AddSingleton(repositorioCadetes);
+            //services.AddSingleton(repositorioPedidos);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

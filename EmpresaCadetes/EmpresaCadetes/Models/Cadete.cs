@@ -16,11 +16,11 @@ namespace EmpresaCadetes.Entidades
 
         public Cadete()
         {
-
+            this.Listapedidos= new List<Pedidos>(); 
         }
-        public Cadete(int id, string nombre, string direcion, string telefono)
+        public Cadete(string nombre, string direcion, string telefono)
         {
-            this.id = id;
+            
             this.nombre = nombre;
             this.direcion = direcion;
             this.telefono = telefono;

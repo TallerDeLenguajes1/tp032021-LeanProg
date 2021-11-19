@@ -13,41 +13,37 @@ namespace EmpresaCadetes.Controllers
     public class CadeteriaController : Controller
     {
         private readonly ILogger<CadeteriaController> _logger;
-       
-        private readonly Cadeteria micadeteria;
-        private readonly DBCadeteria db;
-        private readonly IRepositorioCadetesDB mirepo;
-        private int id = 0;
+        private readonly IIDBSQLite dB;
+        //private readonly Cadeteria micadeteria;
+        //private readonly DBCadeteria db;
+        //private readonly IRepositorioCadetesDB mirepo;
+        //private int id = 0;
        // private int idpago = 1;
 
-        public CadeteriaController(ILogger<CadeteriaController> logger,Cadeteria micadeteria,DBCadeteria db,IRepositorioCadetesDB mirepo)
+        public CadeteriaController(ILogger<CadeteriaController> logger,IIDBSQLite DB)
         {
             _logger = logger;
-           
-            this.micadeteria = micadeteria;
-            this.db = db;
-            this.mirepo = mirepo;
+            dB = DB;
             _logger.LogDebug(1, "NLog injected into HomeController");
 
         }
 
         public IActionResult CargarCadetes(string nombre,string dire,string telefono)
         {
-            if (micadeteria.MisCadetes.Count==0)
-            {
-                id = 0;
-            }
-            else
-            {
-                id = micadeteria.MisCadetes.Count;
-            }
+            //if (micadeteria.MisCadetes.Count==0)
+            //{
+            //    id = 0;
+            //}
+            //else
+            //{
+            //    id = micadeteria.MisCadetes.Count;
+            //}
             
-            Cadete newCadete = new Cadete(id,nombre,dire,telefono);
-            micadeteria.AgregarCadetes(newCadete);
-            db.SaveCadete(newCadete);
+            Cadete newCadete = new Cadete(nombre,dire,telefono);
+            dB.repositorioCadete.SaveCadete(newCadete);
 
             _logger.LogInformation("Hello, this is the Cargar Cadetes!");
-            id++;
+            
             return View(newCadete);
         }
         public IActionResult FormularioCadete()
@@ -59,7 +55,7 @@ namespace EmpresaCadetes.Controllers
         public IActionResult CadetesConPedidos()
         {
 
-            return View(micadeteria);
+            return View(dB);
         }
 
         public IActionResult PagarCadete(int idCadete)
@@ -91,7 +87,7 @@ namespace EmpresaCadetes.Controllers
                 
             //}
 
-            return View(micadeteria);
+            return View(dB);
 
         }
         private bool ControlEntregado(List<Pedidos> CadetesPedidos)
@@ -110,14 +106,15 @@ namespace EmpresaCadetes.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation("Hello, this is the index!");
-            List<Cadete> miscadtes= mirepo.ReadCadetes();
+            List<Cadete> miscadtes= dB.repositorioCadete.ReadCadetes();
             return View(miscadtes);
         }
         public IActionResult EliminarCadete(int idCadete)
         {
-            Cadete miCadete = micadeteria.MisCadetes.Where(cad => cad.Id == idCadete).First();
-            micadeteria.MisCadetes.Remove(miCadete);
-            db.DeleteCadetes(miCadete.Id);
+            //Cadete miCadete = micadeteria.MisCadetes.Where(cad => cad.Id == idCadete).First();
+            //micadeteria.MisCadetes.Remove(miCadete);
+            //db.DeleteCadetes(miCadete.Id);
+            dB.repositorioCadete.DeleteCadetes(idCadete);
             return Redirect("Index");
         }
     }

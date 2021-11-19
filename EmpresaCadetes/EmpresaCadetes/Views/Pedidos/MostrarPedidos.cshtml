@@ -3,7 +3,7 @@
 *@
 @{
 }
-@model List<EmpresaCadetes.Entidades.Pedidos>
+@model EmpresaCadetes.DataBase.IDBSQLite
 
 <div class="text-center">
     <br />
@@ -30,11 +30,11 @@
                 <h3>Estado</h3>
             </div>
             <div class="col-sm">
-                <h3>Cadetes</h3>
+                <h3 >Aciones</h3>
             </div>
-           @* <div class="col-sm">
+            <div class="col-sm">
                 <h3>Asignar Cadete</h3>
-            </div>*@
+            </div>
             <div class="col-sm">
                 <h3>Acciones</h3>
             </div>
@@ -47,7 +47,7 @@
 
 
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.repositorioPedido.ReadPedidos())
         {
 
             <form asp-action="PedidoAcadete" asp-controller="Pedidos" method="Post">
@@ -69,9 +69,9 @@
 
                     </div>
 
-                   @* <div class="col-sm">
+                    <div class="col-sm">
                         <select class="align-items-xl-baseline" name="idCadete">
-                            @foreach (var cadete in Model.MisCadetes)
+                            @foreach (var cadete in Model.repositorioCadete.ReadCadetes())
                             {
                                 if (cadete.Listapedidos.Exists(a => a.Numero == item.Numero))
                                 {
@@ -85,7 +85,7 @@
                             }
                         </select>
 
-                    </div>*@
+                    </div>
                     <div class="col">
                         <input class="btn bg-success" type="submit" value="Seleccionar" />
                     </div>
