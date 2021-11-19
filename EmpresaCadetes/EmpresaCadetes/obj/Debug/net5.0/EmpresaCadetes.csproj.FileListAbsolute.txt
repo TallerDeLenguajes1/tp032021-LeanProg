@@ -2634,7 +2634,6 @@ C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadete
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\AgregarPedidos.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\EliminarPedido.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\FormularioPedido.cshtml.g.cs
-C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\ModificarEstado.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\MostrarPedidos.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\PedidoAcadete.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
@@ -2653,3 +2652,5 @@ C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadete
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\Cadetes.json
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\PagosRealizados.json
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\Pedidos.json
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\FormularioModificar.cshtml.g.cs
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\UpdatePedidos.cshtml.g.cs

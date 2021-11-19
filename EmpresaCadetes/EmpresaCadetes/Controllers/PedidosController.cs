@@ -19,10 +19,7 @@ namespace EmpresaCadetes.Controllers
 
         //int idpedidos=0;
         public PedidosController(IIDBSQLite DB)
-        {
-         
-            
-           
+        { 
             this.DB = DB;
         }
         public IActionResult AgregarPedidos(string obs,string nombrec,string direc,string telefonoc,string estado)
@@ -45,6 +42,18 @@ namespace EmpresaCadetes.Controllers
             //idpedidos++;
             return View(newPedido);
         }
+
+
+        public IActionResult UpdatePedidos(int idpedido,string obs, string nombrec, string direc, string telefonoc, string estado)
+        {
+
+            Pedidos newPedido;
+            newPedido = new Pedidos(obs, estado, nombrec, direc, telefonoc);
+            newPedido.Numero = idpedido;
+            DB.repositorioPedido.UpdatePedido(newPedido);
+           
+            return View(newPedido);
+        }
         public IActionResult FormularioPedido()
         {
             //Vista para cargar pedidos
@@ -58,63 +67,49 @@ namespace EmpresaCadetes.Controllers
             return View(DB);
         }
 
-        //cambiar Estado de un pedido a entregado para pagar al cadete
-        public IActionResult ModificarEstado(int idPedido)
+        //Formulario ParaModificar el pedido
+        public IActionResult FormularioModificar(int idpedido)
         {
-            //if (controlarPedidosconCadetes(idPedido))
-            //{
-            //Pedidos pedido = cadeteria.MisPedidos.Where(p => p.Numero==idPedido).First();
-            //pedido.Estado = "ENTREGADO";
-            //db.ModificarEstadoPedido(cadeteria.MisPedidos);
-            //foreach (var cade in cadeteria.MisCadetes)
-            //{
-            //    foreach (var pedi in cade.Listapedidos)
-            //    {
-            //        if (pedi.Numero==idPedido)
-            //        {
-            //            pedi.Estado = "ENTREGADO";
-            //        }
-            //    }
-            //}
 
-            //db.ModificarListaCadeteApedido(cadeteria.MisCadetes);
-            //return Redirect("MostrarPedidos");
-            //}
-            //else
-            //{
-            //    return Redirect("MostrarPedidos");
-            //}
-            return  View();
+
+            //< span asp - validation -for= "Nombre" class="text-danger"></span>
+            Pedidos pedido= DB.repositorioPedido.GetPedidobyId(idpedido);
+            
+
+            return  View(pedido);
         }
 
-        //controlarPEDIDO EN CADETE
-        private bool controlarPedidosconCadetes(int idpedido)
-        {
-            bool resultado = false;
-            //foreach (var cade in cadeteria.MisCadetes)
-            //{
-            //    foreach (var pedi in cade.Listapedidos)
-            //    {
-            //        if (pedi.Numero == idpedido)
-            //        {
-            //            resultado = true;
-            //        }
-            //    }
-            //}
-            return resultado;
-        }
+        ////controlarPEDIDO EN CADETE
+        //private bool controlarPedidosconCadetes(int idpedido)
+        //{
+        //    bool resultado = false;
+        //    //foreach (var cade in cadeteria.MisCadetes)
+        //    //{
+        //    //    foreach (var pedi in cade.Listapedidos)
+        //    //    {
+        //    //        if (pedi.Numero == idpedido)
+        //    //        {
+        //    //            resultado = true;
+        //    //        }
+        //    //    }
+        //    //}
+        //    return resultado;
+        //}
+
+
         //AGREGAR PEDIDO A CADETE
         public IActionResult PedidoAcadete(int idPedido,int idCadete)
         {
-           //QuitarPedido(idPedido);
-           // Cadete miCadete = cadeteria.MisCadetes.Where(a => a.Id == idCadete).First();
-     
-           // Pedidos unPedido = cadeteria.MisPedidos.Where(p => p.Numero == idPedido).First();
-           // unPedido.Estado = "ENVIADO";
-           // db.ModificarEstadoPedido(cadeteria.MisPedidos);
-           // db.ModificarListaCadeteApedido(cadeteria.MisCadetes);
-           // miCadete.Listapedidos.Add(unPedido);
-       
+            //QuitarPedido(idPedido);
+            // Cadete miCadete = cadeteria.MisCadetes.Where(a => a.Id == idCadete).First();
+
+            // Pedidos unPedido = cadeteria.MisPedidos.Where(p => p.Numero == idPedido).First();
+            // unPedido.Estado = "ENVIADO";
+            // db.ModificarEstadoPedido(cadeteria.MisPedidos);
+            // db.ModificarListaCadeteApedido(cadeteria.MisCadetes);
+            // miCadete.Listapedidos.Add(unPedido);
+            DB.repositorioPedido.AsignarPedidoAcadete(idPedido,idCadete);
+
             return Redirect("MostrarPedidos");
         }
         //Funcion quitar pedido
