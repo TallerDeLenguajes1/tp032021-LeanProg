@@ -317,8 +317,7 @@ namespace EmpresaCadetes.DataBase
             //insertoCliente en la Base de datos
             InsertClientes(pedido.NewCliente);
             int idcliente = getClientebyID(pedido.NewCliente);
-            //List<Cliente> miListaC = ReadClientes();//obtengo el ID cliente
-            //Cliente nuevoCliente = miListaC.Where(a=> a==pedido.NewCliente).First();
+            
             string QueryClientes = "(SELECT clienteID FROM Clientes WHERE clienteID = @id_cliente)";
             //string QueryCadetes = "(SELECT cadeteID FROM Cadetes WHERE cadeteID = @id_cadete)";
 
@@ -370,7 +369,9 @@ namespace EmpresaCadetes.DataBase
 
 
                             }
-
+                            
+                            reader.Close();
+                            conexion.Close();   
                         }
 
 

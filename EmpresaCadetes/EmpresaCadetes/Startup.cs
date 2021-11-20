@@ -18,8 +18,7 @@ namespace EmpresaCadetes
     public class Startup
     {
        
-       Cadeteria cadeteria = new Cadeteria(); 
-        DBCadeteria DB = new DBCadeteria();
+      
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
