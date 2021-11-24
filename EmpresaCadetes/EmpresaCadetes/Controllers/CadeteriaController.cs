@@ -1,4 +1,5 @@
-﻿using EmpresaCadetes.DataBase;
+﻿using AutoMapper;
+using EmpresaCadetes.DataBase;
 using EmpresaCadetes.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,16 +15,19 @@ namespace EmpresaCadetes.Controllers
     {
         private readonly ILogger<CadeteriaController> _logger;
         private readonly IIDBSQLite dB;
+        private readonly IMapper mapper;
+
         //private readonly Cadeteria micadeteria;
         //private readonly DBCadeteria db;
         //private readonly IRepositorioCadetesDB mirepo;
         //private int id = 0;
-       // private int idpago = 1;
+        // private int idpago = 1;
 
-        public CadeteriaController(ILogger<CadeteriaController> logger,IIDBSQLite DB)
+        public CadeteriaController(ILogger<CadeteriaController> logger,IIDBSQLite DB, IMapper mapper)
         {
             _logger = logger;
             dB = DB;
+            this.mapper = mapper;
             _logger.LogDebug(1, "NLog injected into HomeController");
 
         }

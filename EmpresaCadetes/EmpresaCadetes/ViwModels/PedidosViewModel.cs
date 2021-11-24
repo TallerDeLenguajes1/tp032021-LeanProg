@@ -33,4 +33,35 @@ namespace EmpresaCadetes.ViwModels
         public Cliente NewCliente { get => newCliente; set => newCliente = value; }
         public string Estado { get => estado; set => estado = value; }
     }
+
+    public class PedidosAltaViewModel
+    {
+
+     
+        [Required]
+        [StringLength(1000)]
+        private string observacion;
+        [Required]
+        private Cliente newCliente;
+        [Required]
+        [StringLength(100)]
+        private string estado;
+
+
+        public PedidosAltaViewModel(string observacion, string estado, string nombre, string direcion, string telefono)
+        {
+
+            this.observacion = observacion;
+            this.newCliente = new Cliente(nombre, direcion, telefono);
+            this.estado = estado;
+        }
+        public PedidosAltaViewModel()
+        {
+            this.newCliente = new Cliente();
+        }
+       
+        public string Observacion { get => observacion; set => observacion = value; }
+        public Cliente NewCliente { get => newCliente; set => newCliente = value; }
+        public string Estado { get => estado; set => estado = value; }
+    }
 }

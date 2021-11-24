@@ -5,6 +5,8 @@ namespace EmpresaCadetes
 {
     public class PerfildeMapeo : Profile
     {
-
+        public PerfildeMapeo()
+        {
+        }
     }
 }

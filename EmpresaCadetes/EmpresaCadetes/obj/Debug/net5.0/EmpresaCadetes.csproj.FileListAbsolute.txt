@@ -2656,3 +2656,5 @@ C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadete
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Pedidos\UpdatePedidos.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\FormularioAModificar.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\ModificarCadete.cshtml.g.cs
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
