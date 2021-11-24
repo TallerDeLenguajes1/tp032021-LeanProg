@@ -34,17 +34,15 @@ namespace EmpresaCadetes
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton(DB);
-            ////string connectionString=Configuration.GetConecction("Default");
-            //IRepositorioCadetesDB repositorioCadetes=  new RepositorioCadetesSQLite(Configuration.GetConnectionString("Default"));
-            //IRepositorioPedidosDB repositorioPedidos = new RepositorioPedidosSQLite(Configuration.GetConnectionString("Default"));
-            //cadeteria.MisCadetes = DB.ReadCadetes();
-            //cadeteria.MisPedidos = DB.ReadPedidos();
-            //cadeteria.MisPagos = DB.ReadPago();
+            services.AddSession(options =>
+            {
+                    options.IdleTimeout = TimeSpan.FromSeconds(16000);
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.IsEssential = true;
+             }
 
-            //services.AddSingleton(cadeteria);
-            //services.AddSingleton(DB);
-            //services.AddSingleton(repositorioCadetes);
-            //services.AddSingleton(repositorioPedidos);
+            );
+           services.AddAutoMapper(typeof(EmpresaCadetes.PerfildeMapeo));
 
         }
 
@@ -65,7 +63,7 @@ namespace EmpresaCadetes
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -17,7 +17,6 @@ namespace EmpresaCadetes.DataBase
         Pedidos GetPedidobyId(int id_pedido);
         void InsertClientes(Cliente cliente);
         void UpdatePedido(Pedidos pedido);
-
         void UpdateCLiente(Cliente cliente);
         List<Cliente> ReadClientes();
         List<Pedidos> ReadPedidos();

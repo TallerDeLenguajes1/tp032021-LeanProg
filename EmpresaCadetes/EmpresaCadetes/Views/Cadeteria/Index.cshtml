@@ -19,6 +19,9 @@
             <div class="col-sm">
                 <h3>Telefono</h3>
             </div>
+             <div class="col-sm">
+                <h3>Modificar</h3>
+            </div>
             <div class="col-sm">
                 <h3>Eliminar</h3>
             </div>
@@ -49,6 +52,9 @@
                     @item.Telefono
 
                 </div>
+                 <div class="col-sm">
+                   <a name="idcadete" class="btn btn-dark" asp-route-idcadete="@item.Id" asp-action="FormularioAModificar" asp-controller="Cadeteria">Modificar</a>
+                 </div>
                 <div class="col" title="Telefeno">
                     <input type="submit" class="btn btn-danger"  value="ELIMINAR" />
 

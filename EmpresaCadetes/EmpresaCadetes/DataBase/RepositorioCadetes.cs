@@ -258,12 +258,14 @@ namespace EmpresaCadetes.DataBase
             using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
             {
                 conexion.Open();
-                string query = "SELECT FROM Cadetes where id='"+Convert.ToString(id)+"'";
+                string query = "SELECT * FROM Cadetes where cadeteID=@id_cadete;";
                 SQLiteCommand command = new SQLiteCommand(query, conexion);
+                command.Parameters.AddWithValue("@id_cadete",id);
                 using (SQLiteDataReader dataReader = command.ExecuteReader())
                 {
                     if (dataReader.HasRows)
                     {
+                        uncadete= new Cadete();
                         while (dataReader.Read())
                         {
                             uncadete.Id = Convert.ToInt32(dataReader["cadeteID"]);

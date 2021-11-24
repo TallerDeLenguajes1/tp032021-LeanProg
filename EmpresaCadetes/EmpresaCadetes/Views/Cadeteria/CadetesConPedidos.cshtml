@@ -3,7 +3,7 @@
 *@
 @{
 }
-@model EmpresaCadetes.Entidades.Cadeteria
+@model EmpresaCadetes.DataBase.IDBSQLite
     
     <table class="table table-sm table-dark">
         <thead>
@@ -19,7 +19,7 @@
         <tbody>
 
 
-            @foreach (var cadete in Model.MisCadetes)
+            @foreach (var cadete in Model.repositorioCadete.ReadCadetes())
             {
 
                

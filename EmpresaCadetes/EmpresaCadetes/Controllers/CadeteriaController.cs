@@ -57,6 +57,18 @@ namespace EmpresaCadetes.Controllers
 
             return View(dB);
         }
+        public IActionResult ModificarCadete(int idcadete,string nombre,string dire, string telefono)
+        {
+            Cadete cadete= new Cadete(nombre,dire,telefono);
+            cadete.Id= idcadete;
+            dB.repositorioCadete.UpdateCadete(cadete);
+            return View(dB);
+        }
+        public IActionResult FormularioAModificar(int idcadete)
+        {
+            
+            return View(dB.repositorioCadete.GetCadeteById(idcadete));
+        }
 
         public IActionResult PagarCadete(int idCadete)
         {
@@ -90,19 +102,19 @@ namespace EmpresaCadetes.Controllers
             return View(dB);
 
         }
-        private bool ControlEntregado(List<Pedidos> CadetesPedidos)
-        {
-            bool resultado = false;
-            foreach (var item in CadetesPedidos)
-            {
-                if (item.Estado == "ENTREGADO")
-                {
-                    resultado = true;
+        //private bool ControlEntregado(List<Pedidos> CadetesPedidos)
+        //{
+        //    bool resultado = false;
+        //    foreach (var item in CadetesPedidos)
+        //    {
+        //        if (item.Estado == "ENTREGADO")
+        //        {
+        //            resultado = true;
 
-                }
-            }
-            return resultado;
-        }
+        //        }
+        //    }
+        //    return resultado;
+        //}
         public IActionResult Index()
         {
             _logger.LogInformation("Hello, this is the index!");

@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model EmpresaCadetes.Entidades.Cadete
+<h2 class="align-content-center">Porfavor Modifique los Datos del Cadete</h2>
+<form asp-action="ModificarCadete" asp-controller="Cadeteria" method="post">
+     <div class="form-group" hidden>
+        
+        <input hidden required type="text" name="idcadete" class="form-control" id="Nomb" value=@Model.Id>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Nombre</label>
+        <input required type="text" name="nombre" class="form-control" id="Nomb" value=@Model.Nombre>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Direccion</label>
+        <input required type="text" name="dire" class="form-control" id="dire" value=@Model.Direcion>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Telefono</label>
+        <input required type="text" name="telefono" class="form-control" id="telefono" value=@Model.Telefono>
+    </div>
+
+    <input type="submit" name="btn" value="Modificar Cadete" />
+</form>
