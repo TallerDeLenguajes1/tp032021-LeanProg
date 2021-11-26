@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using EmpresaCadetes.DataBase;
 using EmpresaCadetes.Entidades;
+using EmpresaCadetes.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -42,12 +44,36 @@ namespace EmpresaCadetes.Controllers
             //{
             //    id = micadeteria.MisCadetes.Count;
             //}
-            
-            Cadete newCadete = new Cadete(nombre,dire,telefono);
+
+            Cadete newCadete = new Cadete(nombre, dire, telefono);
             dB.repositorioCadete.SaveCadete(newCadete);
 
             _logger.LogInformation("Hello, this is the Cargar Cadetes!");
-            
+
+
+
+            //try
+            //{
+            //    Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+            //    var UsuarioMV = mapper.Map<UsuarioViewModel>(user);
+
+            //    if (UsuarioMV.Nombreusuario != null)
+            //    {
+            //        var CadeteVM = new CadeteAltaViewModel();
+            //        CadeteVM. = UsuarioMV;
+            //        return View(CadeteVM);
+            //    }
+            //    else
+            //    {
+            //        return RedirectToAction("Error");
+            //    }
+
+        //}
+        //    catch (Exception)
+        //    {
+        //        return Redirect("~/Usuario/Login");
+        //    }
+
             return View(newCadete);
         }
         public IActionResult FormularioCadete()
@@ -121,10 +147,29 @@ namespace EmpresaCadetes.Controllers
         //}
         public IActionResult Index()
         {
-            _logger.LogInformation("Hello, this is the index!");
-            List<Cadete> miscadtes= dB.repositorioCadete.ReadCadetes();
-            return View(miscadtes);
+            //_logger.LogInformation("Hello, this is the index!");
+            //List<Cadete> miscadtes= dB.repositorioCadete.ReadCadetes();
+            //return View(miscadtes);
+            try
+            {
+                Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var UsuarioMV = mapper.Map<UsuarioViewModel>(user);
+                var CadetesMV = mapper.Map<List<CadeteViewModel>>(dB.repositorioCadete.ReadCadetes());
+                if (UsuarioMV.Nombreusuario != null)
+                {
+                    return View(new Tuple<List<CadeteViewModel>, UsuarioViewModel>(CadetesMV, UsuarioMV));
+                }
+                else
+                {
+                    return Redirect("~/Usuario/Login");
+                }
+            }
+            catch (Exception)
+            {
+                return Redirect("~/Usuario/Login");
+            }
         }
+    
         public IActionResult EliminarCadete(int idCadete)
         {
             //Cadete miCadete = micadeteria.MisCadetes.Where(cad => cad.Id == idCadete).First();

@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EmpresaCadetes.Entidades;
-using EmpresaCadetes.ViwModels;
+using EmpresaCadetes.ViewModels;
 using AutoMapper;
 using EmpresaCadetes.DataBase;
 using Microsoft.AspNetCore.Http;

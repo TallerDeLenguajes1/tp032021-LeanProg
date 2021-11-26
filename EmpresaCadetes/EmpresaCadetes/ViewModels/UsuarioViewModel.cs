@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EmpresaCadetes.ViwModels
+namespace EmpresaCadetes.ViewModels
 {
     public class UsuarioViewModel
     {

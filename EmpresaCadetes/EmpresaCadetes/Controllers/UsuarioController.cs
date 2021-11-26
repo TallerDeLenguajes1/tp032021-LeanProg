@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using EmpresaCadetes.DataBase;
 using EmpresaCadetes.Entidades;
-using EmpresaCadetes.ViwModels;
+using EmpresaCadetes.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

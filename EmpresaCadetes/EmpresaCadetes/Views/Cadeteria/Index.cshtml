@@ -1,7 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Listado de Cadetes";
 }
-@model List<EmpresaCadetes.Entidades.Cadete>
+@model Tuple<List<EmpresaCadetes.ViewModels.CadeteViewModel>,EmpresaCadetes.ViewModels.UsuarioViewModel>
+
+@await Html.PartialAsync("_NavAdminPartial", Model.Item2)
 <div class="text-center">
     <h1 class="display-4">LISTAS DE CADETES</h1>
 
@@ -30,7 +32,7 @@
     </div>
 
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Item1)
     {
 <form asp-action="EliminarCadete" asp-controller="Cadeteria" method="post">
             <div class="row">

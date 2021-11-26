@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EmpresaCadetes.Entidades;
-using EmpresaCadetes.ViwModels;
+using EmpresaCadetes.ViewModels;
 namespace EmpresaCadetes
 {
     public class PerfildeMapeo : Profile

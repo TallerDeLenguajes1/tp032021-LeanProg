@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
-namespace EmpresaCadetes.ViwModels
+namespace EmpresaCadetes.ViewModels
 {
     public class CadeteViewModel
     {
