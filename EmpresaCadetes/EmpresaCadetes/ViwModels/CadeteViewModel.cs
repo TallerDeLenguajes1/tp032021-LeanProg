@@ -7,18 +7,18 @@ namespace EmpresaCadetes.ViwModels
     public class CadeteViewModel
     {
 
-        private int id;
+        public int id;
         [Required]
         [StringLength(100)]
-        private string nombre;
+        public string nombre;
         [Required]
         [StringLength(100)]
-        private string direcion;
+        public string direcion;
         [Required]
         [StringLength(100)]
-        private string telefono;
-        private List<Pedidos> listapedidos;
-        private float Pagodeldia;
+        public string telefono;
+        public List<Pedidos> listapedidos;
+        public float Pagodeldia;
 
         public CadeteViewModel()
         {
@@ -49,15 +49,15 @@ namespace EmpresaCadetes.ViwModels
      
         [Required]
         [StringLength(100)]
-        private string nombre;
+        public string nombre;
         [Required]
         [StringLength(100)]
-        private string direcion;
+        public string direcion;
         [Required]
         [StringLength(100)]
-        private string telefono;
-        private List<Pedidos> listapedidos;
-        private float Pagodeldia;
+        public string telefono;
+        public List<Pedidos> listapedidos;
+        public float Pagodeldia;
 
         public CadeteAltaViewModel()
         {
@@ -85,18 +85,18 @@ namespace EmpresaCadetes.ViwModels
     public class CadeteModificarViewModel
     {
 
-        private int id;
+        public int id;
         [Required]
         [StringLength(100)]
-        private string nombre;
+        public string nombre;
         [Required]
         [StringLength(100)]
-        private string direcion;
+        public string direcion;
         [Required]
         [StringLength(100)]
-        private string telefono;
-        private List<Pedidos> listapedidos;
-        private float Pagodeldia;
+        public string telefono;
+        public List<Pedidos> listapedidos;
+        public float Pagodeldia;
 
         public CadeteModificarViewModel()
         {

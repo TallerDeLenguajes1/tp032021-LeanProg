@@ -2658,3 +2658,7 @@ C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadete
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\ModificarCadete.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Usuario\Index.cshtml.g.cs
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Usuario\Login.cshtml.g.cs
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Usuario\AltaUsuario.cshtml.g.cs
+C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Shared\_NavAdminPartial.cshtml.g.cs

@@ -6,13 +6,15 @@ namespace EmpresaCadetes.ViwModels
     {
         [Required(ErrorMessage ="El campo Usuario tiene que estar lleno")]
         [StringLength(100)]
-        private string nombreusuario;
+        public string nombreusuario;
         [Required(ErrorMessage ="El campo clave tiene que estar lleno")]
         [StringLength (100)]
-        private string clave;
-        [Required(ErrorMessage = "El campo Password es requerido")]
+        public string clave;
+        [Required(ErrorMessage = "El campo confirmar Password es requerido")]
         [StringLength(100)]
         public string Confirm_Password { get; set; }
+        public string ErrorMessage { get; set; }
+
 
         public UsuarioViewModel(string nombreusuario, string clave)
         {
@@ -30,10 +32,12 @@ namespace EmpresaCadetes.ViwModels
     {
         [Required(ErrorMessage = "El campo Usuario tiene que estar lleno")]
         [StringLength(100)]
-        private string nombreusuario;
+        public string nombreusuario;
         [Required(ErrorMessage = "El campo clave tiene que estar lleno")]
         [StringLength(100)]
-        private string clave;
+        public string clave;
+        public string ErrorMessage { get; set; }
+        public string Confirm_Password { get; set; }
 
         public UsuarioAltaViewModel(string nombreusuario, string clave)
         {
@@ -55,14 +59,14 @@ namespace EmpresaCadetes.ViwModels
     {
         [Required(ErrorMessage = "El campo Usuario tiene que estar lleno")]
         [StringLength(100)]
-        private string nombreusuario;
+        public string nombreusuario;
         [Required(ErrorMessage = "El campo clave tiene que estar lleno")]
         [StringLength(100)]
-        private string clave;
+        public string clave;
         [Required(ErrorMessage = "El campo Password es requerido")]
         [StringLength(100)]
-        public string Confirm_Password { get; set; }
-
+        
+        public string ErrorMessage { get; set; }
         public UsuarioLoginViewModel(string nombreusuario, string clave)
         {
             this.Nombreusuario = nombreusuario;

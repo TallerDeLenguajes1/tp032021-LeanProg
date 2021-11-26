@@ -68,7 +68,7 @@ namespace EmpresaCadetes.DataBase
         //inserto un usuario en la base de datos
         public void InsertUsuarios(Usuario usuario)
         {
-            string query = "INSERT INTO Usuarios (usuarioNombre,usuarioPass) VALUES (@usu,@pass):";
+            string query = "INSERT INTO Usuarios (usuarioNombre,usuarioClave) VALUES (@usu,@pass);";
             try
             {
                 using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
@@ -97,7 +97,7 @@ namespace EmpresaCadetes.DataBase
         {
             bool resultado = false;
             Usuario logeoUsuaro = new Usuario();
-            string query = "SELECT * FROM Usuarios WHERE usuarioNombre=@usa AND usuarioPass=@clave;";
+            string query = "SELECT * FROM Usuarios WHERE usuarioNombre=@usa AND usuarioClave=@clave;";
             try
             {
                 using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
@@ -115,7 +115,7 @@ namespace EmpresaCadetes.DataBase
                                 while (dataReader.Read())
                                 {
                                     logeoUsuaro.Nombreusuario = Convert.ToString(dataReader["usuarioNombre"]);
-                                    logeoUsuaro.Clave = Convert.ToString(dataReader["usuarioPass"]);
+                                    logeoUsuaro.Clave = Convert.ToString(dataReader["usuarioClave"]);
                                     resultado = true;
                                 }
                             }
@@ -135,7 +135,7 @@ namespace EmpresaCadetes.DataBase
         {
 
             Usuario usuariologueado = new Usuario();
-            string query = "SELECT * FROM  Usuarios Where nombreUsuario=@user;";
+            string query = "SELECT * FROM  Usuarios Where usuarioNombre=@user;";
             try
             {
                 using (SQLiteConnection conexion = new SQLiteConnection(connectionString))

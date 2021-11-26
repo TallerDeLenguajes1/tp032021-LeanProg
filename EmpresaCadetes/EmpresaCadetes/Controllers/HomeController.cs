@@ -33,7 +33,7 @@ namespace EmpresaCadetes.Controllers
         {
             try
             {
-                Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("usuarioNombre"));
+                Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
                 var UserVm=mapper.Map<UsuarioViewModel>(user);
                 if (UserVm.Nombreusuario !=null)
                 {
@@ -41,14 +41,14 @@ namespace EmpresaCadetes.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("~/Usuario/Login");
+                    return Redirect("~/Usuario/Login");
                 }
             }
             catch (Exception ex)
             {
 
                 string erro=ex.Message;
-                return RedirectToAction("~/Usuario/Login");
+                return Redirect("~/Usuario/Login");
             }
             
         }

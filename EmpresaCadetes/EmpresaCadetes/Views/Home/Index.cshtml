@@ -1,8 +1,25 @@
-﻿@{
+﻿@model EmpresaCadetes.ViwModels.UsuarioViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
+@await Html.PartialAsync("_NavAdminPartial",Model)
+
+
 <div class="text-center">
+    <div class="alert alert-secondary" role="alert">
+        @if (Model.Nombreusuario != null)
+        {
+            <h1 class="display-4"
+                style="font-family:Impact">
+                ¡BIENVENIDO AL SISTEMA @Model.Nombreusuario!
+            </h1>
+        }
+    </div>
+
+</div>
+
+@*<div class="text-center">
     <h1 class="display-4">BIENVENIDOS A CADETERIA LOS VELOCES</h1>
     <h2>MENU DE OPCIONES </h2>
     <br />
@@ -11,4 +28,4 @@
     <a class="btn btn-primary" role="button" asp-area="" asp-controller="Cadeteria" asp-action="Index">Mostrar Cadetes</a>
     <a class="btn btn-primary" role="button" asp-area="" asp-controller="Pedidos" asp-action="MostrarPedidos">Mostrar Pedidos</a>
     
-</div>
+</div>*@

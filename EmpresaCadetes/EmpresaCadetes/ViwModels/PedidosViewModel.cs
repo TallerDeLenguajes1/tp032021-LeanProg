@@ -6,15 +6,15 @@ namespace EmpresaCadetes.ViwModels
     public class PedidosViewModel
     {
 
-        private int numero;
+        public int numero;
         [Required]
         [StringLength(1000)]
-        private string observacion;
+        public string observacion;
         [Required]
-        private Cliente newCliente;
+        public Cliente newCliente;
         [Required]
         [StringLength(100)]
-        private string estado;
+        public string estado;
 
 
         public PedidosViewModel(string observacion, string estado, string nombre, string direcion, string telefono)
@@ -40,12 +40,12 @@ namespace EmpresaCadetes.ViwModels
      
         [Required]
         [StringLength(1000)]
-        private string observacion;
+        public string observacion;
         [Required]
-        private Cliente newCliente;
+        public Cliente newCliente;
         [Required]
         [StringLength(100)]
-        private string estado;
+        public string estado;
 
 
         public PedidosAltaViewModel(string observacion, string estado, string nombre, string direcion, string telefono)
@@ -69,15 +69,15 @@ namespace EmpresaCadetes.ViwModels
     public class PedidosModificarViewModel
     {
 
-        private int numero;
+        public int numero;
         [Required]
         [StringLength(1000)]
-        private string observacion;
+        public string observacion;
         [Required]
-        private Cliente newCliente;
+        public Cliente newCliente;
         [Required]
         [StringLength(100)]
-        private string estado;
+        public string estado;
 
 
         public PedidosModificarViewModel(string observacion, string estado, string nombre, string direcion, string telefono)
