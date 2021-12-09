@@ -62,8 +62,58 @@ namespace EmpresaCadetes.Controllers
         public IActionResult FormularioPedido()
         {
             //Vista para cargar pedidos
-            return View();
+            try
+            {
+                Usuario user = DB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var userVM= mapper.Map<UsuarioViewModel>(user);
+                if (userVM.nombreusuario!= null)
+                {
+                    PedidosAltaViewModel pedidoVM= new PedidosAltaViewModel();
+
+                    pedidoVM.Usuario = userVM;
+                    return View(pedidoVM);
+                }
+                else
+                {
+                    return Redirect("~/Usuario/Login");
+                }
+            }
+            catch (Exception)
+            {
+
+                return Redirect("~/Usuario/Login");
+            }
+         
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FormularioPedido(PedidosAltaViewModel pedidoVM)
+        {
+            //Vista para cargar pedidos
+            try
+            {
+                Usuario user = DB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var userVM = mapper.Map<UsuarioViewModel>(user);
+                if (userVM.nombreusuario != null && ModelState.IsValid)
+                {
+                    Pedidos pedido = mapper.Map<Pedidos>(pedidoVM);
+                    DB.repositorioPedido.SavePedidos(pedido);
+                    return RedirectToAction("MostrarPedidos");
+                }
+                else
+                {
+                    return Redirect("Error");
+                }
+            }
+            catch (Exception)
+            {
+
+                return Redirect("~/Usuario/Login");
+            }
+
+        }
+
 
         public IActionResult MostrarPedidos()
         {
@@ -76,8 +126,10 @@ namespace EmpresaCadetes.Controllers
                 if (userVM.nombreusuario!=null)
                 {
                     var pedidosVM = mapper.Map<List<PedidosViewModel>>(DB.repositorioPedido.ReadPedidos());
-                    var cadetesVM = mapper.Map<List<CadeteViewModel>>(DB.repositorioCadete.ReadCadetes());
-                    return View(new Tuple<List<PedidosViewModel>, UsuarioViewModel, List<CadeteViewModel>>(pedidosVM, userVM,cadetesVM));
+                    List<Cadete> misCadetes= DB.repositorioCadete.ReadCadetes();
+                    misCadetes.ForEach(a=> a.Listapedidos = DB.repositorioCadete.getPedidos_delCadete(a.Id));
+                    var cadetesVM = mapper.Map<List<CadeteViewModel>>(misCadetes);
+                    return View(new Tuple<List<PedidosViewModel>, UsuarioViewModel, List<CadeteViewModel>>(pedidosVM,userVM,cadetesVM));
 
                 }
                 else

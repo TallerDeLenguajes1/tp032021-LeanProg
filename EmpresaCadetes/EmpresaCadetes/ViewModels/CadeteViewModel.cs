@@ -26,7 +26,7 @@ namespace EmpresaCadetes.ViewModels
         }
         public CadeteViewModel(string nombre, string direcion, string telefono)
         {
-
+            
             this.nombre = nombre;
             this.direcion = direcion;
             this.telefono = telefono;

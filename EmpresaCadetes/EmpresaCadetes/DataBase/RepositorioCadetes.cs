@@ -18,6 +18,7 @@ namespace EmpresaCadetes.DataBase
         List<Cadete> ReadCadetes();
         void SaveCadete(Cadete cadete);
         void UpdateCadete(Cadete unCadete);
+        List<Pedidos> getPedidos_delCadete(int id);
     }
     public class RepositorioCadetesJson : IRepositorioCadetesDB
     {
@@ -194,6 +195,11 @@ namespace EmpresaCadetes.DataBase
             }
             return uncadete;
         }
+
+        public List<Pedidos> getPedidos_delCadete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
@@ -321,6 +327,50 @@ namespace EmpresaCadetes.DataBase
                     conexion.Close();
                 }
             }
+        }
+
+        public List<Pedidos> getPedidos_delCadete(int id)
+        {
+            List<Pedidos> ListadoDePedidos = new List<Pedidos>();
+
+            string SQLQuery = "SELECT * FROM Pedidos INNER JOIN Cadetes " +
+            "ON Pedidos.cadeteId=Cadetes.cadeteID" +
+            " INNER JOIN Clientes ON Pedidos.clienteId=Clientes.clienteID" +
+            " WHERE Cadetes.cadeteID=@id_cad; ";
+            try
+            {
+                using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
+                {
+                    conexion.Open();
+                    SQLiteCommand command = new SQLiteCommand(SQLQuery, conexion);
+                    command.Parameters.AddWithValue("@id_cad", id);
+                    command.ExecuteNonQuery();
+                    using (SQLiteDataReader DataReader = command.ExecuteReader())
+                    {
+                        while (DataReader.Read())
+                        {
+                            Pedidos pedido = new Pedidos();
+                            pedido.Numero = Convert.ToInt32(DataReader["pedidoID"]);
+                            pedido.Observacion = DataReader["pedidoObs"].ToString();
+                            pedido.NewCliente.Id = Convert.ToInt32(DataReader["clienteId"]);
+                            pedido.NewCliente.Nombre = DataReader["clienteNombre"].ToString();
+                            pedido.NewCliente.Direccion = DataReader["clienteDireccion"].ToString();
+                            pedido.NewCliente.Telefono = DataReader["clienteTelefono"].ToString();
+                            pedido.Estado = DataReader["pedidoEstado"].ToString();
+                            ListadoDePedidos.Add(pedido);
+                        }
+                    }
+
+                    conexion.Close();
+                }
+              
+            }
+            catch (Exception )
+            {
+                ListadoDePedidos = new List<Pedidos>();
+                
+            }
+            return ListadoDePedidos;
         }
     }
 }

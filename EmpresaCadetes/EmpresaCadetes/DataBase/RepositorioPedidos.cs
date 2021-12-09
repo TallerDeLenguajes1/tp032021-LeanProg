@@ -221,12 +221,12 @@ namespace EmpresaCadetes.DataBase
                             conexion.Close();
                         }
                     }
-                    // _logger.Info("SE INSERTARON LOS DATOS DEL CLIENTE DE FORMA EXITOSA");
+                   
                 }
                 else
                 {
                     cliente = ListCliente.Where(x => x.Nombre == cliente.Nombre && x.Direccion == cliente.Direccion && x.Telefono == cliente.Telefono).Single();
-                    //_logger.Info("EL CLIENTE " + cliente.Id + " YA SE ENCUENTRA REGISTRADO");
+                 
 
                 }
             }
