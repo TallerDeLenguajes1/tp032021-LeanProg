@@ -2624,8 +2624,6 @@ C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadete
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\EmpresaCadetes.TagHelpers.input.cache
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\EmpresaCadetes.TagHelpers.output.cache
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\EmpresaCadetes.RazorCoreGenerate.cache
-C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\CadetesConPedidos.cshtml.g.cs
-C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\CargarCadetes.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\EliminarCadete.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\FormularioCadete.cshtml.g.cs
 C:\Users\Leandro\Documents\GitHub\tp032021-LeanProg\EmpresaCadetes\EmpresaCadetes\obj\Debug\net5.0\Razor\Views\Cadeteria\Index.cshtml.g.cs

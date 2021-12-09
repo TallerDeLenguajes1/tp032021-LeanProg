@@ -57,6 +57,7 @@ namespace EmpresaCadetes.Controllers
         {
             return View(new UsuarioAltaViewModel());
         }
+
         [HttpPost]
         public IActionResult AltaUsuario(UsuarioAltaViewModel UsuarioVM)
         {

@@ -3,7 +3,8 @@
 *@
 @{
 }
-@model EmpresaCadetes.DataBase.IDBSQLite
+@model Tuple<List<EmpresaCadetes.ViewModels.PedidosViewModel>,EmpresaCadetes.ViewModels.UsuarioViewModel,List<EmpresaCadetes.ViewModels.CadeteViewModel>>
+@await Html.PartialAsync("_NavAdminPartial",Model.Item2)
 
 <div class="text-center">
     <br />
@@ -47,7 +48,7 @@
 
 
 
-        @foreach (var item in Model.repositorioPedido.ReadPedidos())
+        @foreach (var item in Model.Item1)
         {
 
             <form asp-action="PedidoAcadete" asp-controller="Pedidos" method="Post">
@@ -61,8 +62,12 @@
 
                     </div>
                     <div class="col-sm">
-                        <p>@item.NewCliente.Nombre </p>
-
+                       <ul>
+                           <li>Nombre: @item.NewCliente.Nombre</li>
+                           <li>Direcion: @item.NewCliente.Direccion</li>
+                           <li>Telefono: @item.NewCliente.Telefono</li>
+                       </ul> 
+                        
                     </div>
                     <div class="col-sm">
                         <p> @item.Estado</p>
@@ -71,7 +76,7 @@
 
                     <div class="col-sm">
                         <select class="align-items-xl-baseline" name="idCadete">
-                            @foreach (var cadete in Model.repositorioCadete.ReadCadetes())
+                            @foreach (var cadete in Model.Item3)
                             {
                                 if (cadete.Listapedidos.Exists(a => a.Numero == item.Numero))
                                 {

@@ -8,6 +8,9 @@ using EmpresaCadetes.Entidades;
 using EmpresaCadetes.Models;
 using NLog.Web;
 using EmpresaCadetes.DataBase;
+using Microsoft.AspNetCore.Http;
+using AutoMapper;
+using EmpresaCadetes.ViewModels;
 
 namespace EmpresaCadetes.Controllers
 {
@@ -15,12 +18,14 @@ namespace EmpresaCadetes.Controllers
     {
         
         private readonly IIDBSQLite DB;
+        private readonly IMapper mapper;
 
 
         //int idpedidos=0;
-        public PedidosController(IIDBSQLite DB)
+        public PedidosController(IIDBSQLite DB, IMapper mapper)
         { 
             this.DB = DB;
+            this.mapper = mapper;
         }
         public IActionResult AgregarPedidos(string obs,string nombrec,string direc,string telefonoc,string estado)
         {
@@ -63,8 +68,29 @@ namespace EmpresaCadetes.Controllers
         public IActionResult MostrarPedidos()
         {
             //VISTA PARA MOSTRAR PEDIDOS
-            List<Pedidos> pedidos = DB.repositorioPedido.ReadPedidos();
-            return View(DB);
+            try
+            {
+                Usuario user = DB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var userVM= mapper.Map<UsuarioViewModel>(user);
+                
+                if (userVM.nombreusuario!=null)
+                {
+                    var pedidosVM = mapper.Map<List<PedidosViewModel>>(DB.repositorioPedido.ReadPedidos());
+                    var cadetesVM = mapper.Map<List<CadeteViewModel>>(DB.repositorioCadete.ReadCadetes());
+                    return View(new Tuple<List<PedidosViewModel>, UsuarioViewModel, List<CadeteViewModel>>(pedidosVM, userVM,cadetesVM));
+
+                }
+                else
+                {
+                    return Redirect("~/Usuario/Login");
+                }
+            }
+            catch (Exception)
+            {
+
+                return Redirect("~/Usuario/Login");
+            }
+         
         }
 
         //Formulario ParaModificar el pedido

@@ -3,27 +3,29 @@
 *@
 @{
 }
-@model EmpresaCadetes.Entidades.Cadete
+@model Tuple<EmpresaCadetes.ViewModels.CadeteModificarViewModel,EmpresaCadetes.ViewModels.CadeteViewModel,EmpresaCadetes.ViewModels.UsuarioViewModel>
+
+@await Html.PartialAsync("_NavAdminPartial", Model.Item3)
 <h2 class="align-content-center">Porfavor Modifique los Datos del Cadete</h2>
-<form asp-action="ModificarCadete" asp-controller="Cadeteria" method="post">
+<form asp-action="FormularioAModificar" asp-controller="Cadeteria" method="post">
      <div class="form-group" hidden>
         
-        <input hidden required type="text" name="idcadete" class="form-control" id="Nomb" value=@Model.Id>
+        <input hidden required type="text" name="id" class="form-control" id="id" value=@Model.Item2.Id>
     </div>
 
     <div class="form-group">
         <label for="formGroupExampleInput">Nombre</label>
-        <input required type="text" name="nombre" class="form-control" id="Nomb" value=@Model.Nombre>
+        <input required type="text" name="nombre" class="form-control" id="Nomb" value=@Model.Item2.Nombre>
     </div>
 
     <div class="form-group">
         <label for="formGroupExampleInput2">Direccion</label>
-        <input required type="text" name="dire" class="form-control" id="dire" value=@Model.Direcion>
+        <input required type="text" name="direcion" class="form-control" id="dire" value=@Model.Item2.Direcion>
     </div>
 
     <div class="form-group">
         <label for="formGroupExampleInput2">Telefono</label>
-        <input required type="text" name="telefono" class="form-control" id="telefono" value=@Model.Telefono>
+        <input required type="text" name="telefono" class="form-control" id="telefono" value=@Model.Item2.Telefono>
     </div>
 
     <input type="submit" name="btn" value="Modificar Cadete" />

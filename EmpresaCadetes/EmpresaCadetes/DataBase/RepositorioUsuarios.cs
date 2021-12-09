@@ -65,6 +65,11 @@ namespace EmpresaCadetes.DataBase
             return misUsuarios;
         }
 
+        internal Usuario LoginUser(object p)
+        {
+            throw new NotImplementedException();
+        }
+
         //inserto un usuario en la base de datos
         public void InsertUsuarios(Usuario usuario)
         {

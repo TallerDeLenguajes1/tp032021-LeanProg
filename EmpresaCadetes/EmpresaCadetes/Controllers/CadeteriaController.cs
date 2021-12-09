@@ -34,59 +34,93 @@ namespace EmpresaCadetes.Controllers
 
         }
 
-        public IActionResult CargarCadetes(string nombre,string dire,string telefono)
-        {
-            //if (micadeteria.MisCadetes.Count==0)
-            //{
-            //    id = 0;
-            //}
-            //else
-            //{
-            //    id = micadeteria.MisCadetes.Count;
-            //}
+        //public IActionResult CargarCadetes(string nombre,string dire,string telefono)
+        //{
+           
 
-            Cadete newCadete = new Cadete(nombre, dire, telefono);
-            dB.repositorioCadete.SaveCadete(newCadete);
+        //    Cadete newCadete = new Cadete(nombre, dire, telefono);
+        //    dB.repositorioCadete.SaveCadete(newCadete);
 
-            _logger.LogInformation("Hello, this is the Cargar Cadetes!");
+        //    _logger.LogInformation("Hello, this is the Cargar Cadetes!");
 
 
 
-            //try
-            //{
-            //    Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
-            //    var UsuarioMV = mapper.Map<UsuarioViewModel>(user);
+        //    //try
+        //    //{
+        //    //    Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+        //    //    var UsuarioMV = mapper.Map<UsuarioViewModel>(user);
 
-            //    if (UsuarioMV.Nombreusuario != null)
-            //    {
-            //        var CadeteVM = new CadeteAltaViewModel();
-            //        CadeteVM. = UsuarioMV;
-            //        return View(CadeteVM);
-            //    }
-            //    else
-            //    {
-            //        return RedirectToAction("Error");
-            //    }
+        //    //    if (UsuarioMV.Nombreusuario != null)
+        //    //    {
+        //    //        var CadeteVM = new CadeteAltaViewModel();
+        //    //        CadeteVM. = UsuarioMV;
+        //    //        return View(CadeteVM);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        return RedirectToAction("Error");
+        //    //    }
 
+        ////}
+        ////    catch (Exception)
+        ////    {
+        ////        return Redirect("~/Usuario/Login");
+        ////    }
+
+        //    return View(newCadete);
         //}
-        //    catch (Exception)
-        //    {
-        //        return Redirect("~/Usuario/Login");
-        //    }
 
-            return View(newCadete);
-        }
         public IActionResult FormularioCadete()
         {
+            try
+            {
+                Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var UsuarioMV = mapper.Map<UsuarioViewModel>(user);
+                var CadeteVM= new CadeteAltaViewModel();
+                if (UsuarioMV.Nombreusuario != null)
+                {
+                    return View(new Tuple<CadeteAltaViewModel, UsuarioViewModel>(CadeteVM, UsuarioMV));
+                }
+                else
+                {
+                    return Redirect("~/Usuario/Login");
+                }
+            }
+            catch (Exception)
+            {
+                return Redirect("~/Usuario/Login");
+            }
 
-            return View();
+           
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FormularioCadete(CadeteAltaViewModel cadeteAltaVM)
+        {
+            try
+            {
+                Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var UsuarioMV = mapper.Map<UsuarioViewModel>(user);
+                if (UsuarioMV!=null && ModelState.IsValid)
+                {
+                    Cadete newCadete = mapper.Map<Cadete>(cadeteAltaVM);
+                    dB.repositorioCadete.SaveCadete(newCadete);// se guarda en SQLITE
+                    dB.RepositorioCadetesJson.SaveCadete(newCadete); // se guarda en json
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+            }
+            catch (Exception)
+            {
+                return Redirect("~/Usuario/Login");
+              
+            }
         }
         
-        public IActionResult CadetesConPedidos()
-        {
-
-            return View(dB);
-        }
         public IActionResult ModificarCadete(int idcadete,string nombre,string dire, string telefono)
         {
             Cadete cadete= new Cadete(nombre,dire,telefono);
@@ -96,10 +130,60 @@ namespace EmpresaCadetes.Controllers
         }
         public IActionResult FormularioAModificar(int idcadete)
         {
-            
-            return View(dB.repositorioCadete.GetCadeteById(idcadete));
-        }
+            try
+            {
+                Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+              
+                var userVM=mapper.Map<UsuarioViewModel>(user);
+                if (userVM.Nombreusuario!=null)
+                {
+                    Cadete cadete = dB.repositorioCadete.GetCadeteById(idcadete);
+                    cadete.Id = idcadete;
+                    var cadeteVM = mapper.Map<CadeteViewModel>(cadete);
+                    CadeteModificarViewModel cadeteModificarViewModel = new CadeteModificarViewModel();
+                    return View(new Tuple<CadeteModificarViewModel, CadeteViewModel, UsuarioViewModel>(cadeteModificarViewModel, cadeteVM, userVM));
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+                
+            }
+            catch (Exception)
+            {
 
+                return Redirect("~/Usuario/Login");
+            }
+          
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FormularioAModificar(CadeteModificarViewModel cadeteVM)
+        {
+            try
+            {
+                Usuario user = dB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var userVM = mapper.Map<UsuarioViewModel>(user);
+                if (userVM.Nombreusuario!= null)
+                {
+                    
+                    var cadeteAmodificar= mapper.Map<Cadete>(cadeteVM);
+                    dB.repositorioCadete.UpdateCadete(cadeteAmodificar);
+                    return Redirect("~/Cadeteria");
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return Redirect("~/Usuario/Login");
+            }
+
+        }
         public IActionResult PagarCadete(int idCadete)
         {
 

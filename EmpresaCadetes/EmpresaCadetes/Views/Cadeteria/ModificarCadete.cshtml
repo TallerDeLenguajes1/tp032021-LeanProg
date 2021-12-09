@@ -3,3 +3,5 @@
 *@
 @{
 }
+@model Tuple<EmpresaCadetes.ViewModels.CadeteAltaViewModel,EmpresaCadetes.ViewModels.UsuarioViewModel>
+@await Html.PartialAsync("_NavAdminPartial",Model.Item2)
