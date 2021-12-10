@@ -7,7 +7,7 @@
 @model EmpresaCadetes.ViewModels.PedidosModificarViewModel
 @await Html.PartialAsync("_NavAdminPartial",Model.Usuario)
 
-<form asp-action="FormularioModificar" asp-controller="Pedidos" method="post">
+<form asp-action="FormularioModificar" asp-controller="Pedidos" method="post" class="form-group">
      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
      <div hidden class="form-group">
         <input hidden required asp-for="numero" name="numero">
@@ -54,3 +54,4 @@
 
     <input type="submit" name="btn" value="Cargar Pedido" />
 </form>
+

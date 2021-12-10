@@ -243,7 +243,7 @@ namespace EmpresaCadetes.Controllers
             // miCadete.Listapedidos.Add(unPedido);
             DB.repositorioPedido.AsignarPedidoAcadete(idPedido,idCadete);
 
-            return Redirect("MostrarPedidos");
+            return RedirectToAction("MostrarPedidos");
         }
         //Funcion quitar pedido
         //private void QuitarPedido(int idPedido)
@@ -259,7 +259,7 @@ namespace EmpresaCadetes.Controllers
             //db.DeletePedidos(idPedido); //borro el pedido de mi base de datos
             //db.ModificarListaCadeteApedido(cadeteria.MisCadetes); // y modifico mi lista cadetes
             DB.repositorioPedido.DeletePedidos(idPedido);
-            return Redirect("MostrarPedidos");
+            return RedirectToAction("MostrarPedidos");
         }
         public IActionResult Index()
         {
