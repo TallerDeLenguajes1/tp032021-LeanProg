@@ -151,10 +151,65 @@ namespace EmpresaCadetes.Controllers
 
 
             //< span asp - validation -for= "Nombre" class="text-danger"></span>
-            Pedidos pedido= DB.repositorioPedido.GetPedidobyId(idpedido);
+            try
+            {
+                Usuario user = DB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var userVM = mapper.Map<UsuarioViewModel>(user);
+                if (userVM.nombreusuario !=null)
+                {
+                       Pedidos pedido = DB.repositorioPedido.GetPedidobyId(idpedido);
+                       var pedidoVM= mapper.Map<PedidosModificarViewModel>(pedido);
+                         pedidoVM.Usuario = userVM;
+                        return View(pedidoVM);
+                }
+                else
+                {
+                    return Redirect("~/Usuario/Login");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return Redirect("~/Usuario/Login");
+            }
+            
             
 
-            return  View(pedido);
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FormularioModificar(PedidosModificarViewModel pedidoVM)
+        {
+
+
+            //< span asp - validation -for= "Nombre" class="text-danger"></span>
+            try
+            {
+                Usuario user = DB.repositorioUsuarios.LoginUser(HttpContext.Session.GetString("username"));
+                var userVM = mapper.Map<UsuarioViewModel>(user);
+                if (userVM.nombreusuario != null && ModelState.IsValid)
+                {
+                    Pedidos pedido = mapper.Map<Pedidos>(pedidoVM);
+                    DB.repositorioPedido.UpdatePedido(pedido);
+                    return RedirectToAction("MostrarPedidos");
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                return Redirect("~/Usuario/Login");
+            }
+
+
+
+
         }
 
         ////controlarPEDIDO EN CADETE

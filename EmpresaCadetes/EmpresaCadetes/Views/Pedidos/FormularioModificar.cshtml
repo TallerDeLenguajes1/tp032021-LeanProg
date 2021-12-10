@@ -4,38 +4,52 @@
 @{
 
 }
-@model EmpresaCadetes.Entidades.Pedidos
-<form asp-action="UpdatePedidos" asp-controller="Pedidos" method="post">
+@model EmpresaCadetes.ViewModels.PedidosModificarViewModel
+@await Html.PartialAsync("_NavAdminPartial",Model.Usuario)
+
+<form asp-action="FormularioModificar" asp-controller="Pedidos" method="post">
+     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
      <div hidden class="form-group">
-        <input hidden required type="number" name="idpedido" class="form-control" id="numero" value=@Model.Numero>
+        <input hidden required asp-for="numero" name="numero">
+        <span asp-validation-for="numero" class="text-danger" /> 
+    </div>
+
+    
+    <div class="form-group">
+        <label asp-for="observacion" for="formGroupExampleInput">Detalle del Pedido</label>
+        <input required asp-for="observacion" placeholder=@Model.observacion >
+        <span asp-validation-for="numero" class="text-danger" /> 
+    </div>
+
+     <div hidden class="form-group">
+        <input hidden required asp-for="newCliente.Id" name="newCliente.Id">
+        <span asp-validation-for="newCliente.Id" class="text-danger" /> 
+    </div>
+    <div class="form-group">
+        <label asp-for="newCliente.Nombre" for="formGroupExampleInput2">Nombre del cliente</label>
+        <input  required asp-for="newCliente.Nombre" placeholder=@Model.newCliente.Direccion>
+        <span asp-validation-for="newCliente.Nombre" class="text-danger" /> 
+    </div>
+    <div class="form-group">
+        <label asp-for="newCliente.Direccion" for="formGroupExampleInput2">Direccion del cliente exacta</label>
+        <input asp-for="newCliente.Direccion"  placeholder=@Model.newCliente.Direccion>
+         <span asp-validation-for="newCliente.Nombre" class="text-danger" /> 
     </div>
 
     <div class="form-group">
-        <label for="formGroupExampleInput">Detalle del Pedido</label>
-        <input required type="text" name="Obs" class="form-control" id="Nomb" placeholder=@Model.Observacion >
-    </div>
-
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Nombre del cliente</label>
-        <input  required type="text" name="nombrec" class="form-control" id="dire" placeholder=@Model.NewCliente.Nombre>
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Direccion del cliente exacta</label>
-        <input type="text" name="direc" class="form-control" id="dire" placeholder=@Model.NewCliente.Direccion>
-    </div>
-
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Telefono del cliente</label>
-        <input type="text" name="telefonoc" class="form-control" id="Fing" placeholder=@Model.NewCliente.Telefono>
+        <label asp-for="newCliente.Telefono" for="formGroupExampleInput2">Telefono del cliente</label>
+        <input asp-for="newCliente.Telefono" placeholder=@Model.newCliente.Telefono>
+        <span asp-validation-for="newCliente.Telefono" class="text-danger" /> 
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Estado del pedido</label>
        @* <input required type="text" name="estado" class="form-control" id="Fing" placeholder="CARGADO" value="CARGADO" readonly>*@
-        <select class=text name="estado">
+        <select class=text name="estado" asp-for="estado">
                 <option selected value="CARGADO" > CARGADO </option>  
                 <option value="ENVIADO" > ENVIADO </option>
                 <option value="ENTREGADO"> ENTREGADO </option>
         </select>
+         <span asp-validation-for="estado" class="text-danger" /> 
     </div>
 
     <input type="submit" name="btn" value="Cargar Pedido" />

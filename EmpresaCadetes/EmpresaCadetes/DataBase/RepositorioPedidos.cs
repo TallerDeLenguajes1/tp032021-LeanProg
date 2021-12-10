@@ -21,7 +21,6 @@ namespace EmpresaCadetes.DataBase
         List<Cliente> ReadClientes();
         List<Pedidos> ReadPedidos();
         void SavePedidos(Pedidos pedido);
-
         void AsignarPedidoAcadete(int idpedido,int idcadete);
     }
 
@@ -188,8 +187,9 @@ namespace EmpresaCadetes.DataBase
                         cliente.Telefono = DataReader["clienteTelefono"].ToString();
                         ListadoDeCliente.Add(cliente);
                     }
+                    DataReader.Close();
                 }
-
+               
                 conexion.Close();
                 return ListadoDeCliente;
             }
@@ -237,6 +237,9 @@ namespace EmpresaCadetes.DataBase
             }
 
         }
+
+
+        
         //obetener los pedidos de la bd en una lista
         public List<Pedidos> ReadPedidos()
         {
@@ -286,28 +289,12 @@ namespace EmpresaCadetes.DataBase
 
         public int getClientebyID(Cliente uncliente)
         {
-            int id = 0;
+            
 
-
-            using (SQLiteConnection conexion = new SQLiteConnection(connectionString))
-            {
-                string query = "SELECT clienteID FROM Clientes WHERE clienteNombre=@nombre;";
-
-                conexion.Open();
-                SQLiteCommand command = new SQLiteCommand(query, conexion);
-                command.Parameters.AddWithValue("@nombre", uncliente.Nombre);
-                using (SQLiteDataReader Datareader = command.ExecuteReader())
-                {
-
-                    Datareader.Read();
-                    id = Convert.ToInt32(Datareader["clienteID"]);
-
-                    Datareader.Close();
-                }
-
-                conexion.Close();
-            }
-            return id;
+            List<Cliente> listaClientes= ReadClientes();
+            Cliente cliente = listaClientes.Find(a => a.Direccion == uncliente.Direccion && a.Nombre == uncliente.Nombre && a.Telefono == uncliente.Telefono);
+            
+            return cliente.Id;
         }
 
 
@@ -362,6 +349,7 @@ namespace EmpresaCadetes.DataBase
                                 pedido.Numero = Convert.ToInt32(reader["pedidoID"]);
                                 pedido.Observacion = Convert.ToString(reader["pedidoObs"]);
                                 pedido.Estado = Convert.ToString(reader["pedidoEstado"]);
+                                pedido.NewCliente.Id = Convert.ToInt32(reader["clienteID"]);
                                 pedido.NewCliente.Direccion = Convert.ToString(reader["clienteDireccion"]);
                                 pedido.NewCliente.Nombre = Convert.ToString(reader["clienteNombre"]);
                                 pedido.NewCliente.Telefono = Convert.ToString(reader["clienteTelefono"]);
@@ -391,25 +379,27 @@ namespace EmpresaCadetes.DataBase
             string query = "UPDATE Pedidos SET pedidoObs=@obs,pedidoEstado=@estado,clienteId=@id_cliente WHERE pedidoID=@id_pedido;";
             try
             {
-                InsertClientes(pedido.NewCliente);
-                pedido.NewCliente.Id = getClientebyID(pedido.NewCliente);
+                UpdateCLiente(pedido.NewCliente);
+                //pedido.NewCliente.Id = getClientebyID(pedido.NewCliente);
              
                 
                 
-                using (SQLiteConnection comexion= new SQLiteConnection(connectionString))
+                using (SQLiteConnection conexion= new SQLiteConnection(connectionString))
                 {
                     using (SQLiteCommand command= new SQLiteCommand(query,conexion))
-                    {   conexion.Open();
+                    {   
+                        
+                        conexion.Open();
                         command.Parameters.AddWithValue("id_pedido",pedido.Numero);
                         command.Parameters.AddWithValue("@obs",pedido.Observacion);
                         command.Parameters.AddWithValue("@estado",pedido.Estado);
                         command.Parameters.AddWithValue("@id_cliente",pedido.NewCliente.Id);
                         command.ExecuteNonQuery();
                        
-                        comexion.Close();
+                        conexion.Close();
 
                     }
-                    UpdateCLiente(pedido.NewCliente);
+                    
                 }
 
             }
@@ -425,13 +415,13 @@ namespace EmpresaCadetes.DataBase
         public void UpdateCLiente(Cliente cliente)
         {
             string query = "UPDATE Clientes SET clienteNombre=@nombre,clienteTelefono=@telefono,clienteDireccion=@direccion WHERE clienteID = @id_cli;";
-            int idcliente = getClientebyID(cliente);
+            //int idcliente = getClientebyID(cliente);
             using (SQLiteConnection comexion= new SQLiteConnection(connectionString))
             {
                 using (SQLiteCommand command= new SQLiteCommand(query,conexion))
                 {
                     conexion.Open();
-                    command.Parameters.AddWithValue("@id_cli",idcliente);
+                    command.Parameters.AddWithValue("@id_cli",cliente.Id);
                     command.Parameters.AddWithValue("@nombre",cliente.Nombre);
                     command.Parameters.AddWithValue("@telefono", cliente.Telefono);
                     command.Parameters.AddWithValue("@direccion", cliente.Direccion);
